@@ -6,15 +6,42 @@ import com.online.library.service.LivroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class LivroServiceImpl implements LivroService {
 
-    private LivroRepository livroRepository;
-
+    private final LivroRepository livroRepository;
 
     @Override
-    public Livro getLivroById(Long id) {
-        return livroRepository.getReferenceById(id);
+    public List<Livro> getLivroByTitulo(String titulo) {
+        return livroRepository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    @Override
+    public Optional<Livro> getLivroById(Long id) {
+        return livroRepository.findById(id);
+    }
+
+    @Override
+    public List<Livro> getAllLivros() {
+        return livroRepository.findAll();
+    }
+
+    @Override
+    public Livro createLivro(Livro livro) {
+        return null;
+    }
+
+    @Override
+    public Livro updateLivro(Livro livro) {
+        return null;
+    }
+
+    @Override
+    public void deleteLivro(Long id) {
+        livroRepository.deleteById(id);
     }
 }
