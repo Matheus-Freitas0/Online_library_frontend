@@ -1,13 +1,19 @@
 package com.online.library.controller;
 
+import com.online.library.domain.Emprestimo;
 import com.online.library.domain.Livro;
+import com.online.library.dto.LivroDto;
+import com.online.library.repository.EmprestimoRepository;
 import com.online.library.service.LivroService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("livraria/livro")
@@ -38,5 +44,11 @@ public class LivroController {
     @DeleteMapping("/delete/{id}")
     public void deleteLivroById(@PathVariable Long id) {
         livroService.deleteLivro(id);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/create")
+    public Livro createLivro(@RequestBody @Valid LivroDto livroDto) {
+        return livroService.createLivro(livroDto);
     }
 }
