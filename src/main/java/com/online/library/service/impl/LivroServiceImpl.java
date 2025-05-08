@@ -2,6 +2,7 @@ package com.online.library.service.impl;
 
 import com.online.library.domain.Livro;
 import com.online.library.dto.LivroDto;
+import com.online.library.mapper.LivroMapper;
 import com.online.library.repository.LivroRepository;
 import com.online.library.service.LivroService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,8 @@ public class LivroServiceImpl implements LivroService {
 
     @Override
     public List<LivroDto> getLivroByTitulo(String titulo) {
-        return livroRepository.findByTituloContainingIgnoreCase(titulo);
+        List<Livro> livros = livroRepository.findByTituloContainingIgnoreCase(titulo);
+        return LivroMapper.toDtoList(livros);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.online.library.domain.Emprestimo;
 import com.online.library.domain.Livro;
 import com.online.library.dto.LivroDto;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,4 +46,11 @@ public class LivroMapper {
                 .build();
     }
 
+    public static List<LivroDto> toDtoList(List<Livro> livros) {
+        if (livros == null) return null;
+
+        return livros.stream()
+                .map(LivroMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }
