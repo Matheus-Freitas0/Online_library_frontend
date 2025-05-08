@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface LivroService {
 
-    List<Livro> getLivroByTitulo (String titulo);
+    List<LivroDto> getLivroByTitulo (String titulo);
 
     Optional<Livro> getLivroById (Long id);
 

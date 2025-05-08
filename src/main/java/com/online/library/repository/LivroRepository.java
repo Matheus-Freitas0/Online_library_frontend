@@ -1,6 +1,7 @@
 package com.online.library.repository;
 
 import com.online.library.domain.Livro;
+import com.online.library.dto.LivroDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
