@@ -1,9 +1,11 @@
     package com.online.library.domain;
 
     import jakarta.persistence.*;
+    import lombok.Getter;
 
     import java.time.LocalDateTime;
 
+    @Getter
     @MappedSuperclass
     public class Domain {
 
