@@ -1,6 +1,5 @@
 package com.online.library.service;
 
-import com.online.library.domain.Livro;
 import com.online.library.dto.LivroDto;
 
 import java.util.List;
@@ -10,13 +9,13 @@ public interface LivroService {
 
     List<LivroDto> getLivroByTitulo (String titulo);
 
-    Optional<Livro> getLivroById (Long id);
+    Optional<LivroDto> getLivroById (Long id);
 
-    List<Livro> getAllLivros();
+    List<LivroDto> getAllLivros();
 
-    Livro createLivro(LivroDto livroDto);
+    LivroDto createLivro(LivroDto livroDto);
 
-    Livro updateLivro(Livro livro);
+    LivroDto updateLivro(LivroDto livro);
 
     void deleteLivro(Long id);
 }

@@ -26,13 +26,13 @@ public class LivroController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/id/{id}")
-    public Optional<Livro> getLivroById(@PathVariable Long id) {
+    public Optional<LivroDto> getLivroById(@PathVariable Long id) {
         return livroService.getLivroById(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/all")
-    public List<Livro> getAllLivros() {
+    public List<LivroDto> getAllLivros() {
         return livroService.getAllLivros();
     }
 
@@ -44,7 +44,7 @@ public class LivroController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create")
-    public Livro createLivro(@RequestBody @Valid LivroDto livroDto) {
+    public LivroDto createLivro(@RequestBody @Valid LivroDto livroDto) {
         return livroService.createLivro(livroDto);
     }
 }

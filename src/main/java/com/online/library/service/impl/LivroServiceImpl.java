@@ -8,6 +8,9 @@ import com.online.library.service.LivroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,32 +27,28 @@ public class LivroServiceImpl implements LivroService {
     }
 
     @Override
-    public Optional<Livro> getLivroById(Long id) {
-        return livroRepository.findById(id);
+    public Optional<LivroDto> getLivroById(Long id) {
+        return livroRepository.findById(id).map(LivroMapper::toDto);
     }
 
     @Override
-    public List<Livro> getAllLivros() {
-        return livroRepository.findAll();
+    public List<LivroDto> getAllLivros() {
+        List<Livro> livros = livroRepository.findAll();
+        return LivroMapper.toDtoList(livros);
     }
 
     @Override
-    public Livro createLivro(LivroDto livroDto) {
-        Livro livro = Livro.builder()
-                .titulo(livroDto.getTitulo())
-                .autor(livroDto.getAutor())
-                .editora(livroDto.getEditora())
-                .isbn(livroDto.getIsbn())
-                .anoPublicacao(livroDto.getAnoPublicacao())
-                .quantidadeTotal(livroDto.getQuantidadeTotal())
-                .quantidadeDisponivel(livroDto.getQuantidadeDisponivel() != null ? livroDto.getQuantidadeDisponivel() : livroDto.getQuantidadeTotal())
-                .build();
-        return livroRepository.save(livro);
+    public LivroDto createLivro(LivroDto livroDto) {
+        Livro livro = LivroMapper.toEntity(livroDto, new HashSet<>());
+        Livro livroEntity = livroRepository.save(livro);
+        return LivroMapper.toDto(livroEntity);
     }
 
     @Override
-    public Livro updateLivro(Livro livro) {
-        return livroRepository.save(livro);
+    public LivroDto updateLivro(LivroDto livroDto) {
+        Livro livro = LivroMapper.toEntity(livroDto, new HashSet<>());
+        Livro livroEntity = livroRepository.save(livro);
+        return LivroMapper.toDto(livroEntity);
     }
 
     @Override

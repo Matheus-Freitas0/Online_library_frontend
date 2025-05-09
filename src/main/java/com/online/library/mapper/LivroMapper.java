@@ -33,7 +33,7 @@ public class LivroMapper {
                 .collect(Collectors.toSet());
     }
 
-    private static Livro toEntity(LivroDto livroDto, Set<Emprestimo> emprestimos) {
+    public static Livro toEntity(LivroDto livroDto, Set<Emprestimo> emprestimos) {
         return Livro.builder()
                 .titulo(livroDto.getTitulo())
                 .autor(livroDto.getAutor())
