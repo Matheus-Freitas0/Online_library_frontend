@@ -4,6 +4,7 @@ import com.online.library.domain.Emprestimo;
 import com.online.library.domain.Livro;
 import com.online.library.dto.LivroDto;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -51,6 +52,14 @@ public class LivroMapper {
 
         return livros.stream()
                 .map(LivroMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Livro> toEntityList(List<LivroDto> livrosDto) {
+        if (livrosDto == null) return null;
+
+        return livrosDto.stream()
+                .map(livroDto -> LivroMapper.toEntity(livroDto, new HashSet<>()))
                 .collect(Collectors.toList());
     }
 }
