@@ -1,6 +1,5 @@
 package com.online.library.controller;
 
-import com.online.library.domain.Livro;
 import com.online.library.dto.LivroDto;
 import com.online.library.service.LivroService;
 import jakarta.validation.Valid;
@@ -47,4 +46,12 @@ public class LivroController {
     public LivroDto createLivro(@RequestBody @Valid LivroDto livroDto) {
         return livroService.createLivro(livroDto);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/update/{id}")
+    public LivroDto updateLivro(@PathVariable Long id, @RequestBody @Valid LivroDto livroDto) {
+        return livroService.updateLivro(id, livroDto);
+    }
+
+
 }

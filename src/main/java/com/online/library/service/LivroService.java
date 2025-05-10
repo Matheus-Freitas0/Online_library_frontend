@@ -15,7 +15,7 @@ public interface LivroService {
 
     LivroDto createLivro(LivroDto livroDto);
 
-    LivroDto updateLivro(LivroDto livro);
+    LivroDto updateLivro(Long id, LivroDto livroDto);
 
     void deleteLivro(Long id);
 }
